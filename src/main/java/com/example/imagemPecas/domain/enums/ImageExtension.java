@@ -2,7 +2,6 @@ package com.example.imagemPecas.domain.enums;
 
 import lombok.Getter;
 import org.springframework.http.MediaType;
-
 import java.util.Arrays;
 
 public enum ImageExtension {

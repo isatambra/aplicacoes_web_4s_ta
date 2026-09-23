@@ -1,6 +1,5 @@
 package com.example.imagemPecas.application.images;
 
-
 import com.example.imagemPecas.domain.entity.Image;
 import com.example.imagemPecas.domain.enums.ImageExtension;
 import org.springframework.http.MediaType;
@@ -16,10 +15,20 @@ public class ImageMapper {
     {
         return Image.builder()
                 .name(name)
-                .tags(String.join(",", tags))
+                .tags(String.join(",",tags))
                 .size(file.getSize())
-                .extension((ImageExtension.valueof(MediaType.valueOf(file.getContentType()))))
+                .extension(ImageExtension.valueof(MediaType.valueOf(file.getContentType())))
                 .file(file.getBytes())
+                .build();
+    }
+
+    public ImageDTO imageToDTO(Image image, String url){
+        return ImageDTO.builder()
+                .url(url)
+                .extension(image.getExtension().name())
+                .name(image.getName())
+                .size(image.getSize())
+                .uploadDate(image.getUploadDate().toLocalDate())
                 .build();
     }
 }
